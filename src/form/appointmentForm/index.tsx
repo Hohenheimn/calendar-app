@@ -47,7 +47,7 @@ const AppointmentForm = ({ formDefaultValue, id }: PropType) => {
     }
     queryClient.invalidateQueries({ queryKey: ["apointments-list"] });
     setMessage({
-      message: `Appointment created ${id ? "Updated" : "successfully"}`,
+      message: `Appointment ${id ? "Updated" : "created"} successfully`,
       description:
         "You can check your appointments in your dashboard and Sidebar",
       type: "success",
@@ -80,7 +80,7 @@ const AppointmentForm = ({ formDefaultValue, id }: PropType) => {
     `/appointment/${id}`,
     () => {
       setMessage({
-        message: "Appointment deleted successully ",
+        message: "Appointment deleted successfully ",
         description: "You will be redirect to dashboard",
         type: "success",
         toggle: true,

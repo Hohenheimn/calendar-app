@@ -37,7 +37,7 @@ const LoginPage = () => {
   });
 
   const onSuccess = (data: any) => {
-    setCookie("user-token", data?.data?.user?.id);
+    setCookie("user-token", data?.data?.accessToken);
     navigate("/");
   };
   const onError = (error: any) => {
