@@ -1,0 +1,15 @@
+{
+  "users": [
+    {
+      "email": "guest@email.com",
+      "password": "$2a$10$WpyYwbbmTJQ1YTkqlvPwfevgQ8ST.0y96fcBwAtIYYjDE00rGA7oq",
+      "id": 1
+    },
+    {
+      "id": "d0d1",
+      "email": "jomtiu16@gmail.com",
+      "password": "q2312"
+    }
+  ],
+  "appointment": []
+}
