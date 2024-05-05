@@ -1,6 +1,8 @@
 import { useContext, useEffect, useState } from "react";
 
+import { useCookies } from "react-cookie";
 import { CgMenuGridR } from "react-icons/cg";
+
 import { IoMdArrowBack } from "react-icons/io";
 
 import { Outlet, useNavigate, useParams } from "react-router-dom";
@@ -13,6 +15,7 @@ import { AppointmentContext } from "../../context/Appointment/AppointmentContext
 import { useFetch } from "../../hooks/api";
 
 const AppointmentPage = () => {
+  const [_, __, removeCookie] = useCookies(["user-token"]);
   const [showSideBar, setShowSideBar] = useState(true);
   const { data: appointments } = useFetch(
     "/api/appointment",
@@ -35,11 +38,15 @@ const AppointmentPage = () => {
     };
   }, []);
 
+  const logoutHandler = async () => {
+    await removeCookie("user-token");
+  };
+
   return (
-    <section className=" flex w-full border">
+    <section className=" flex w-full">
       <aside
         className={twMerge(
-          " duration-200 w-full max-w-[20rem] py-5 bg-[#f1f5f9] fixed h-screen md:relative",
+          " duration-200 items-start flex flex-col w-full max-w-[20rem] py-5 bg-[#f1f5f9] fixed h-screen md:relative",
           showSideBar && "left-0",
           !showSideBar && "-left-[20rem]"
         )}
@@ -65,7 +72,7 @@ const AppointmentPage = () => {
         >
           <IoMdArrowBack />
         </Button>
-        <ul className="  space-y-5">
+        <ul className=" w-full ">
           <MenuItem
             appointment={{
               id: undefined,
@@ -73,8 +80,11 @@ const AppointmentPage = () => {
               date: "",
               status: "pending",
             }}
-            label={"Add Appointment"}
+            label={"ADD APPOINTMENT"}
           />
+          <li className="px-5 py-3 text-xl border-b-2 text-primary-500 cursor-pointer font-bold">
+            Appointments
+          </li>
           {appointments?.map((appointment: AppointmentType, index: number) => (
             <MenuItem
               key={index}
@@ -83,7 +93,13 @@ const AppointmentPage = () => {
             />
           ))}
         </ul>
+        <div className=" w-full flex flex-1 justify-center items-end mt-5">
+          <Button appearance="primary" onClick={logoutHandler}>
+            Log Out
+          </Button>
+        </div>
       </aside>
+
       <main className=" flex-1 p-5 pt-20">
         <Outlet />
       </main>

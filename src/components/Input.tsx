@@ -1,4 +1,5 @@
-import { ChangeEvent } from "react";
+import { ChangeEvent, useState } from "react";
+import { IoMdEye, IoMdEyeOff } from "react-icons/io";
 import { twMerge } from "tailwind-merge";
 
 type Props = {
@@ -24,21 +25,38 @@ const Input = ({
   value,
   onChange,
 }: Props) => {
+  const [showPassword, setShowPassword] = useState(false);
+  const eyeStyle =
+    "text-xl cursor-pointer absolute right-2 top-1/2 -translate-y-1/2";
   return (
-    <input
-      id={id}
-      type={type}
-      name={name}
-      placeholder={placeholder}
-      className={twMerge(
-        "border rounded-lg px-2 py-3 3xl:px-3 3xl:py-4 w-full outline-primary-500",
-        className
+    <div className=" w-full relative">
+      <input
+        id={id}
+        type={showPassword ? "text" : type}
+        name={name}
+        placeholder={placeholder}
+        className={twMerge(
+          "flex-1 border rounded-lg px-2 py-3 3xl:px-3 3xl:py-4 w-full outline-primary-500",
+          className
+        )}
+        value={value}
+        onChange={onChange}
+        {...field}
+        {...rest}
+      />
+      {type === "password" && showPassword && (
+        <IoMdEye
+          className={eyeStyle}
+          onClick={() => setShowPassword(!showPassword)}
+        />
       )}
-      value={value}
-      onChange={onChange}
-      {...field}
-      {...rest}
-    />
+      {type === "password" && !showPassword && (
+        <IoMdEyeOff
+          className={eyeStyle}
+          onClick={() => setShowPassword(!showPassword)}
+        />
+      )}
+    </div>
   );
 };
 
