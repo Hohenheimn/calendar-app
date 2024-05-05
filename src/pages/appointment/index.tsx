@@ -15,7 +15,7 @@ import { useFetch } from "../../hooks/api";
 const AppointmentPage = () => {
   const [showSideBar, setShowSideBar] = useState(true);
   const { data: appointments } = useFetch(
-    "/appointment",
+    "/api/appointment",
     ["apointments-list"],
     true
   );

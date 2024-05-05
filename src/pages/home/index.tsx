@@ -33,7 +33,7 @@ const HomePage = () => {
   const [filter, setFilter] = useState("all");
   const [appointmentList, setAppointmentList] = useState<AppointmentType[]>([]);
   const { data: appointments } = useFetch(
-    "/appointment",
+    "/api/appointment",
     ["apointments-list", filter],
     true
   );

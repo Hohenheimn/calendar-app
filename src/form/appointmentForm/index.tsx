@@ -65,19 +65,19 @@ const AppointmentForm = ({ formDefaultValue, id }: PropType) => {
   };
 
   const { mutate: addAppointment, isPending: addLoading } = usePost(
-    "/appointment",
+    "/api/appointment",
     onSuccess,
     onError
   );
 
   const { mutate: UpdateAppointment, isPending: updateLoading } = usePut(
-    `/appointment/${id}`,
+    `/api/appointment/${id}`,
     onSuccess,
     onError
   );
 
   const { mutate: deleteAppointment, isPending: deleteLoading } = useDelete(
-    `/appointment/${id}`,
+    `/api/appointment/${id}`,
     () => {
       setMessage({
         message: "Appointment deleted successfully ",
