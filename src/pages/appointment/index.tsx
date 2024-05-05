@@ -46,7 +46,7 @@ const AppointmentPage = () => {
     <section className=" flex w-full">
       <aside
         className={twMerge(
-          " duration-200 items-start flex flex-col w-full max-w-[20rem] py-5 bg-[#f1f5f9] fixed h-screen md:relative",
+          " z-50 duration-200 items-start flex flex-col w-full max-w-[20rem] py-5 bg-[#f1f5f9] fixed h-screen md:relative",
           showSideBar && "left-0",
           !showSideBar && "-left-[20rem]"
         )}
